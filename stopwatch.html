@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            justify-content: space-around;
+            padding: 5% 20%;
+        }
+        button{background-color: rgb(224, 47, 47);
+            padding: 10px 20px ;
+            border: none;
+            color: white;
+            font-size: 20px;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="update">00</button>
+    </div>
+    <div class="container">
+        <button onclick="st()">Star</button>
+        <button onclick="pause()">Pause</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+    
+</body>
+<script>
+   
+    let update =document.querySelector("#update");
+       
+    let number = 0;
+    let min=0;
+    let h=0;
+
+let interval;
+let stop=1;
+
+
+
+let start = () => {
+    if(number==60){
+    number=0;
+    min++;
+    
+    
+}else{
+    update.innerHTML =h+'h '+min+'m '+ number+"s";
+    number++;
+}
+if(min==60){
+    min=0;
+    if(h==24){
+        h=0;
+    }
+    h++;
+}
+    
+    console.log(number);
+}
+
+let st = () => {
+    stop=1
+    interval = setInterval(start, 1000);
+}
+
+let pause = () => {
+    clearInterval(interval);
+    
+    if(stop==0){
+        st()
+        stop=1
+    }else{
+        stop=0;
+    }
+    
+    
+    
+}
+
+let reset = () => {
+    number = 0;
+    clearInterval(interval);
+    update.innerHTML = number; 
+}
+
+</script>
+</html>
